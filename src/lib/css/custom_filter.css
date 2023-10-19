@@ -1,0 +1,68 @@
+.customFilter {
+	background-color: #ffffff;
+	padding: 0.5625rem 1.125rem;
+	border-radius: 0.375rem;
+}
+.customFilter .form-label {
+	color: #6c6c6c;
+	font-size: 0.8rem;
+	margin-bottom: 0;
+}
+.customFilter .form-control {
+	border: 0;
+	padding: 0.125rem 0.125rem;
+	font-size: 0.8rem;
+	background-color: transparent;
+	box-shadow: none;
+	transition: none;
+}
+.customFilter .form-select {
+	border: 0;
+	padding: 0.125rem 0.125rem;
+	font-size: 0.8rem;
+	background-color: transparent;
+	box-shadow: none;
+	transition: none;
+	background-position: right -0.125rem center;
+}
+
+.svelecte-control {
+	--sv-bg: transparent !important;
+	--sv-color: inherit;
+	--sv-min-height: 42px;
+	--sv-border-color: transparent;
+	--sv-border: none !important;
+	--sv-active-border: none !important;
+	--sv-active-outline: none;
+	--sv-item-selected-bg: #d1d1d1 !important;
+}
+
+.sv-dropdown {
+	background-color: #fff !important;
+}
+.sv-item {
+	border-radius: 0.375rem !important;
+}
+.sv-dropdown-content .sv-item-content {
+	color: #6c6c6c !important;
+}
+.sv-item .sv-item-btn {
+	border-radius: 0.375rem !important;
+}
+
+.btn-filter {
+	color: rgb(98, 98, 98) !important;
+	font-weight: 500;
+	padding: 0.2rem 0.5rem !important;
+	background: white !important;
+	border: 2px solid #a2a2a2;
+	font-size: 0.85rem;
+	/* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; */
+	white-space: nowrap;
+}
+.dropdown-item {
+	color: rgb(98, 98, 98) !important;
+	font-weight: 500;
+	padding: 0.5rem 0.8rem !important;
+	font-size: 0.85rem;
+}
