@@ -1,0 +1,74 @@
+name: Build And Deploy AA-Hotline
+
+on:
+  push:
+    branches: ["dev"]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            *Repository:*
+            ${{ github.repository }} [link](https://github.com/${{ github.repository }})
+            *Branch:*
+            ${{ github.ref_name }}
+            *Actor:*
+            ${{ github.actor }}
+            *Commit:*
+            https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            *Message:*
+            Created commit: ${{ github.event.commits[0].message }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: notify
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Resource
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+
+      - name: Install Package
+        run: npm install
+
+      - name: Build
+        run: |
+          export NODE_OPTIONS="--max_old_space_size=4096"
+          npm run build
+          cp package.json build
+          cp package-lock.json build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: prod
+          keep_files: false
+
+      - name: send telegram message on publish
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            *Repository:*
+            ${{ github.repository }} [link](https://github.com/${{ github.repository }})
+            *Branch:*
+            ${{ github.ref_name }}
+            *Commit:*
+            https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            *Repo Action URL:*
+            https://github.com/${{ github.repository }}/actions/runs/${{github.run_id}}
+            *Message:*
+            Publish build to Git
