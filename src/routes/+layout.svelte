@@ -15,9 +15,9 @@
 	register('en-US', () => import('$lib/i18n/en/groupcid.json'));
 	
 	register('vi-VN', () => import('$lib/i18n/vi/common.json'));
-	// register('vi-VN', () => import('$lib/i18n/vi/message.json'));
-	// // register('vi-VN', () => import('$lib/i18n/vi/lower_case.json'));
-	// register('vi-VN', () => import('$lib/i18n/vi/campaign.json'));
+	register('vi-VN', () => import('$lib/i18n/vi/cid.json'));
+	register('vi-VN', () => import('$lib/i18n/vi/campaign.json'));
+	register('vi-VN', () => import('$lib/i18n/vi/server.json'));
 	register('vi-VN', () => import('$lib/i18n/vi/groupcid.json'));
 
 	init({
