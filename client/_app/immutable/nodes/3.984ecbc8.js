@@ -1,0 +1,1 @@
+import{S as n,i as o,s as c,q as i,r as p,b as l,N as s,h as f}from"../chunks/index.44600393.js";function m(r){let e;return{c(){e=i("export const prerender = false;")},l(t){e=p(t,"export const prerender = false;")},m(t,a){l(t,e,a)},p:s,i:s,o:s,d(t){t&&f(e)}}}class d extends n{constructor(e){super(),o(this,e,null,m,c,{})}}export{d as component};

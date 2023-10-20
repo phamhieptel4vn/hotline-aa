@@ -1,0 +1,1 @@
+const r={group_cid_name:"Group CID Name",tel_campaign_id:"Tel Campaign ID",tenant_id:"Tenant ID",network:"Network",ref_carrier_uuid:"Ref Carrier UUID",order:"Order",action:"Action"},e={groupcid:r};export{e as default,r as groupcid};
