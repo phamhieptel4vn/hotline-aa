@@ -1,0 +1,1 @@
+import{d as a,e as l,g as i,A as s,f as o}from"./CardTitle.b126185e.js";const u=async(e=99,r=0,t={},n=null)=>(t.limit=e,t.offset=r,i(s+"/hotline/v1/server",t,n)),c=async(e,r=null)=>o(s+"/hotline/v1/server",e,r),p=async(e,r,t=null)=>a(s+`/hotline/v1/server/${e}`,r,t),P=async(e,r=null)=>l(s+`/hotline/v1/server/${e}`,null,r);export{c as a,P as b,u as c,p as d};

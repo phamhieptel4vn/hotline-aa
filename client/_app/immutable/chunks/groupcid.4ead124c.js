@@ -1,0 +1,1 @@
+import{d as s,e as u,g as a,A as n,f as l}from"./CardTitle.b126185e.js";const p=async(t=99,i=0,o={},e=null)=>(o.limit=t,o.offset=i,a(n+"/hotline/v1/group-cid",o,e)),c=async(t,i=null)=>l(n+"/hotline/v1/group-cid",t,i),d=async(t,i,o=null)=>s(n+`/hotline/v1/group-cid/${t}`,i,o),G=async(t,i=null)=>u(n+`/hotline/v1/group-cid/${t}`,null,i);export{c as a,G as b,p as c,d};
