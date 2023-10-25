@@ -1,0 +1,1 @@
+import{ag as c}from"./index.44600393.js";import{j as n}from"./singletons.040d4709.js";function p(t,{delay:o=0,duration:e=400,easing:a=c}={}){const i=+getComputedStyle(t).opacity;return{delay:o,duration:e,easing:a,css:s=>`opacity: ${s*i}`}}const f=n("goto");export{p as f,f as g};
