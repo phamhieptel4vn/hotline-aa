@@ -15,7 +15,7 @@
 	const groupcidUuid = data.id;
 	const token = data.session.token;
 	const tenantId = data.session.tenant_id;
-	console.log("tenantId", tenantId);
+	
 	let cids = data.groupcid.data.cids;
 	let modalAddCidOpen = false;
 	let groupcid = data.groupcid;

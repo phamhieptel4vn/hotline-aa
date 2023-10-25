@@ -1,26 +1,47 @@
 <script>
 	// @ts-nocheck
 	import { apiPostCid } from "$lib/api/cid";
+	import { apiGetGroupCids } from "$lib/api/groupcid";
 	import { notifyApiError, notifyError, notifySuccess } from "$lib/util/notify/_notify";
 	import { _ } from "svelte-i18n";
-	import { Button, Col, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, Row } from "sveltestrap";
+	import {
+		Button,
+		Col,
+		Form,
+		FormGroup,
+		Input,
+		Label,
+		Modal,
+		ModalBody,
+		ModalFooter,
+		Row
+	} from "sveltestrap";
 	export let isOpen = false;
+	export let data;
 	export let token;
 	export let tenantId;
 	let cid = {
-		caller_id: "",
 		tenant_id: tenantId,
-		group_cid_id: "",
-		status: "ok",
+		caller_id: "",
+		group_cid_id: ""
 	};
+	let groupcids = data.groupcids;
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		let body = {"data": cid};
-		if (body.data.caller_id.length < 1) {
-			notifyError("caller_id bị thiếu");
-			return;
-		}
-		await apiPostCid(body, token)
+		let body = { data: cid };
+		const myArray = body.data.caller_id.split("|");
+		// if (body.data.caller_id.length < 1) {
+		// 	notifyError("caller_id bị thiếu");
+		// 	return;
+		// }
+		myArray.forEach((item) => {
+			console.log(item);
+			if (item.length < 1) {
+				notifyError("caller_id bị thiếu");
+				return;
+			}
+			body.data.caller_id = item;
+		apiPostCid(body, token)
 			.then(async (result) => {
 				if (result.ok) {
 					notifySuccess($_("message.add_success"));
@@ -35,6 +56,22 @@
 			.catch((error) => {
 				console.log("error", error);
 			});
+		});
+		// await apiPostCid(body, token)
+		// 	.then(async (result) => {
+		// 		if (result.ok) {
+		// 			notifySuccess($_("message.add_success"));
+		// 			setTimeout(async () => {
+		// 				location.reload();
+		// 			}, 1500);
+		// 		} else {
+		// 			notifyApiError(result);
+		// 			return;
+		// 		}
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log("error", error);
+		// 	});
 	};
 </script>
 
@@ -60,7 +97,13 @@
 								<Label for="cId" class="float-end fs-6">{$_("cid.caller_id")} :</Label>
 							</Col>
 							<Col lg="8">
-								<Input type="text" id="cId" bind:value={cid.caller_id} invalid={cid.caller_id.length < 3} />
+								<Input
+									type="textarea"
+									rows="3"
+									id="cId"
+									bind:value={cid.caller_id}
+									invalid={cid.caller_id.length < 3}
+								/>
 							</Col>
 						</Row>
 					</FormGroup>
@@ -70,7 +113,11 @@
 								<Label for="groupCid" class="float-end fs-6">{$_("cid.group_cid_id")} :</Label>
 							</Col>
 							<Col lg="8">
-								<Input type="text" id="groupCid" bind:value={cid.group_cid_id} />
+								<Input type="select" name="groupCid" bind:value={cid.group_cid_id}>
+									{#each groupcids as groupcid}
+										<option value={groupcid.id}>{groupcid.group_cid_name}</option>
+									{/each}
+								</Input>
 							</Col>
 						</Row>
 					</FormGroup>

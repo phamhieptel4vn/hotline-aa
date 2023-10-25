@@ -12,6 +12,7 @@
 	export let data;
 	const token = data.session.token;
 	let cids = data.cids;
+	let groupcids = data.groupcids;
 	let modalAddCidOpen = false;
 
 	const handleGetCids = async () => {
@@ -101,4 +102,4 @@
 		</Card>
 	</Col>
 </Row>
-<AddModal {token} bind:isOpen={modalAddCidOpen} />
+<AddModal {data} {token} bind:isOpen={modalAddCidOpen} />

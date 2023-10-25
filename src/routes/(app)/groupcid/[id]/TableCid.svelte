@@ -35,7 +35,7 @@
 							<td class="btn-group" role="group">
 								<div class="d-flex justify-content-center">
 										<a class="btn btn-icon btn-soft btn-outline-primary btnDetail" href={`/cid/${row.id}`}>
-											<i class="fas fa-pencil-alt" />
+											<i class="uil uil-edit mx-auto" />
 										</a>
 											<button
 												type="button"
@@ -44,7 +44,7 @@
 													handleDelete(row);
 												}}
 											>
-												<i class="ni ni-trash" />
+												<i class="uil uil-minus-circle mx-auto" />
 											</button>
 								</div>
 							</td>

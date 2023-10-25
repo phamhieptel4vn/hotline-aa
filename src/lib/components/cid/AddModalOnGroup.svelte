@@ -7,26 +7,35 @@
 	export let isOpen = false;
 	export let token;
 	export let data;
+	const tenantId = data.session.tenant_id;
 	let cid = {
 		caller_id: "",
-		tenant_id: "",
+		tenant_id: tenantId,
 		group_cid_id: data.groupcid.data.id,
-		status: "ok",
+		// status: "ok",
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		let body = {"data": cid};
-		if (body.data.caller_id.length < 1) {
-			notifyError("caller_id bị thiếu");
-			return;
-		}
-		await apiPostCid(body, token)
+		const myArray = body.data.caller_id.split("|");
+		// if (body.data.caller_id.length < 1) {
+		// 	notifyError("caller_id bị thiếu");
+		// 	return;
+		// }
+		myArray.forEach((item) => {
+			console.log(item);
+			if (item.length < 1) {
+				notifyError("caller_id bị thiếu");
+				return;
+			}
+			body.data.caller_id = item;
+		apiPostCid(body, token)
 			.then(async (result) => {
 				if (result.ok) {
 					notifySuccess($_("message.add_success"));
-					// setTimeout(async () => {
-					// 	location.reload();
-					// }, 1500);
+					setTimeout(async () => {
+						location.reload();
+					}, 1500);
 				} else {
 					notifyApiError(result);
 					return;
@@ -35,6 +44,7 @@
 			.catch((error) => {
 				console.log("error", error);
 			});
+		});
 	};
 </script>
 
@@ -60,7 +70,7 @@
 								<Label for="cId" class="float-end fs-6">{$_("caller_id")} :</Label>
 							</Col>
 							<Col lg="8">
-								<Input type="text" id="cId" bind:value={cid.caller_id} invalid={cid.caller_id.length < 3} />
+								<Input type="textarea" rows="3" id="cId" bind:value={cid.caller_id} invalid={cid.caller_id.length < 3} />
 							</Col>
 						</Row>
 					</FormGroup>
@@ -71,16 +81,6 @@
 							</Col>
 							<Col lg="8">
 								<Input type="text" class="form-control" name="groupCid" bind:value={cid.group_cid_id} readonly/>
-							</Col>
-						</Row>
-					</FormGroup>
-					<FormGroup>
-						<Row class="g-3 align-items-center mb-3">
-							<Col lg="4">
-								<Label for="tenant_id" class="float-end fs-6">{$_("tenant_id")} :</Label>
-							</Col>
-							<Col lg="8">
-								<Input type="text" id="tenant_id" bind:value={cid.tenant_id} />
 							</Col>
 						</Row>
 					</FormGroup>
