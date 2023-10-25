@@ -67,7 +67,7 @@
 					<FormGroup>
 						<Row class="g-3 align-items-center mb-3">
 							<Col lg="4">
-								<Label for="cId" class="float-end fs-6">{$_("caller_id")} :</Label>
+								<Label for="cId" class="float-end fs-6">{$_("cid.caller_id")} :</Label>
 							</Col>
 							<Col lg="8">
 								<Input type="textarea" rows="3" id="cId" bind:value={cid.caller_id} invalid={cid.caller_id.length < 3} />
@@ -77,7 +77,7 @@
 					<FormGroup>
 						<Row class="g-3 align-items-center mb-3">
 							<Col lg="4">
-								<Label for="groupCid" class="float-end fs-6">{$_("group_cid_id")} :</Label>
+								<Label for="groupCid" class="float-end fs-6">{$_("cid.group_cid_id")} :</Label>
 							</Col>
 							<Col lg="8">
 								<Input type="text" class="form-control" name="groupCid" bind:value={cid.group_cid_id} readonly/>
